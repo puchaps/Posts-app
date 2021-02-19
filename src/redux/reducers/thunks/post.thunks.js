@@ -1,27 +1,26 @@
-import axios from "axios"
+import axios from "axios";
 
-import { 
-  getPostFromDBSuccsesAC,
-  getPostFromDBFailedAC, 
+import {
+  getPostFromDBSuccessAC,
+  getPostFromDBFailedAC,
   toggleLoaderAC,
-  clearInputAfterSubmitAC
+  clearInputAfterSubmitAC,
 } from "../actions/post.actions";
 
-export const getPostSFromDBthunk= () => {
-  return async (dispatch) => {
-    try {
-      dispatch(toggleLoaderAC());
-      
-      await axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.data)
-        .then(posts => dispatch(getPostFromDBSuccsesAC(posts))
-      );
+const getPostSFromDBThunk = () => async (dispatch) => {
+  try {
+    dispatch(toggleLoaderAC());
 
-      dispatch(clearInputAfterSubmitAC());
-      dispatch(toggleLoaderAC());
-    } catch(error) {
-      dispatch(getPostFromDBFailedAC(error))
-    };
-  };
+    await axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.data)
+      .then((posts) => dispatch(getPostFromDBSuccessAC(posts)));
+
+    dispatch(clearInputAfterSubmitAC());
+    dispatch(toggleLoaderAC());
+  } catch (error) {
+    dispatch(getPostFromDBFailedAC(error));
+  }
 };
 
+export default getPostSFromDBThunk;

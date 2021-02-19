@@ -1,12 +1,11 @@
+import React from "react";
+
 import PostBlock from "./components/post-block/post-block.component";
 
-const App = () => {
-  return (
-    <>
-      <PostBlock/>
-    </>
-  );
-};
-
+const App = () => (
+  <>
+    <PostBlock />
+  </>
+);
 
 export default App;

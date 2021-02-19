@@ -1,20 +1,19 @@
-import './loader.styles.scss'
+import React from "react";
 
-const Loader = ({ loader, children }) => {
-  if (loader) {
+import "./loader.styles.scss";
+
+const Loader = ({ onLoader, children }) => {
+  if (onLoader) {
     return (
-      <img 
-        src="https://i.pinimg.com/originals/fa/93/b4/fa93b4ffee72b457f38998277337001d.gif" 
+      <img
+        className="loader-img"
+        src="https://www.flaticon.com/svg/vstatic/svg/455/455690.svg?token=exp=1613749667~hmac=e3a990281e03a032eb163cdfc1d43eaf"
         alt="loader"
       />
     );
-  };
+  }
 
-  return (
-    <>
-      {children}
-    </>
-  );
+  return children;
 };
 
 export default Loader;

@@ -2,9 +2,9 @@ import { createSelector } from "reselect";
 
 const selectorPost = state => state.post;
 
-export const selectorChoosedQuantityPosts = createSelector(
+export const selectorChosenQuantityPosts = createSelector(
   [selectorPost],
-  (post) => post.choosedQuantityPosts
+  (post) => post.chosenQuantityPosts
 );
 
 export const selectorLoader = createSelector(

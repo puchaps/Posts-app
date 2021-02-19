@@ -1,31 +1,28 @@
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import { selectorLoader } from '../../redux/reducers/selectors/post.selectors';
+import { selectorLoader } from "../../redux/reducers/selectors/post.selectors";
 
-import './post-block.styles.scss';
+import "./post-block.styles.scss";
 
-import PostFrom from '../post-form/post-forn.component';
-import PostPreview from '../post-preview/post-preview.component';
-import Loader from '../loader/loader.component';
+import PostForm from "../post-form/post-form.component";
+import PostPreview from "../post-preview/post-preview.component";
+import Loader from "../loader/loader.component";
 
-const PostBlock = ({ loader }) => {
-  return (
-    <div className="post-block">
-      <div className="post-block-title">
-        <h1>Posts</h1>
-      </div>
-      <PostFrom/>
-      <Loader loader = {loader}>
-        <PostPreview/>
-      </Loader>
+const PostBlock = ({ onLoader }) => (
+  <div className="post-block">
+    <div className="post-block-title">
+      <h1>Posts</h1>
     </div>
-  );
-};
+    <PostForm />
+    <Loader onLoader={onLoader}>
+      <PostPreview />
+    </Loader>
+  </div>
+);
 
-const mapStateToProps = state => ({
-  loader: selectorLoader(state)
+const mapStateToProps = (state) => ({
+  onLoader: selectorLoader(state),
 });
 
-export default connect(
-  mapStateToProps
-)(PostBlock);
+export default connect(mapStateToProps)(PostBlock);

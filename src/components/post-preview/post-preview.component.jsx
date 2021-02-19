@@ -1,25 +1,21 @@
-import { connect } from 'react-redux';
+/* eslint-disable react/jsx-props-no-spreading */
+import React from "react";
+import { connect } from "react-redux";
 
-import { selectorPosts } from '../../redux/reducers/selectors/post.selectors';
+import { selectorPosts } from "../../redux/reducers/selectors/post.selectors";
 
-import './post-preview.styles.scss';
+import PostItem from "../post-item/post-item.component";
 
-import PostItem from '../post-item/post-item.component';
+const PostPreview = ({ onPosts }) => (
+  <>
+    {onPosts.map(({ id, ...otherProps }) => (
+      <PostItem key={id} {...otherProps} />
+    ))}
+  </>
+);
 
-const PostPreview = ({ posts }) => {
-  return (
-    <div className="post-pveview">
-      {
-        posts.map( ({id, ...otherProps}) => <PostItem key = {id} {...otherProps}/>)
-      }
-    </div>
-  );
-};
-
-const mapStateToProps = state => ({
-  posts: selectorPosts(state)
+const mapStateToProps = (state) => ({
+  onPosts: selectorPosts(state),
 });
 
-export default connect(
-  mapStateToProps
-)(PostPreview);
+export default connect(mapStateToProps)(PostPreview);
